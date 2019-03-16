@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/WdatePicker.css" />
+<link rel="stylesheet" type="text/css" href="css/skin_/form.css" />
+<link href="umeditor/themes/default/_css/umeditor.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript" src="js/jquery.select.js"></script>
+<script type="text/javascript" src="js/WdatePicker.js"></script>
+<script type="text/javascript">
+window.UMEDITOR_HOME_URL = 'umeditor/';  // 请换成绝对路径
+</script>
+<script type="text/javascript" src="js/umeditor.config.js"></script>
+<script type="text/javascript" src="js/editor_api.js"></script>
+<script type="text/javascript" src="umeditor/lang/zh-cn/zh-cn.js"></script>
+<title>リソース</title>
+</head>
+
+<body>
+<div id="container">
+	<div id="hd">
+    </div>
+    <div id="bd">
+    	<div id="main">
+            <h2 class="subfild">
+            	<span>リソース</span>
+            </h2>
+            <div class="subfild-content base-info">
+            	<div class="kv-item ue-clear">
+                	<label><span class="impInfo">*</span>名前</label>
+                	<div class="kv-item-content">
+                    	<input type="text" placeholder="名前" />
+                    </div>
+                    <span class="kv-item-tip">文字数は35文字に制限されています</span>
+                </div>
+                <div class="kv-item ue-clear time">
+                	<label><span class="impInfo">*</span>Roll-On日付</label>
+                	<div class="kv-item-content">
+                    	<input type="text" placeholder="yyyy-MM-dd" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                        <i class="time-icon"></i>
+                    </div>
+                    <span class="kv-item-tip error">エラメッセージ</span>
+                </div>
+                
+                <div class="kv-item ue-clear">
+                	<label>所属チーム</label>
+                	<div class="kv-item-content">
+                    	<select>
+                        	<option>MF1</option>
+                            <option>MF2</option>
+                            <option>MF3</option>
+                            <option>MF4</option>
+                            <option>Tech</option>
+                        </select>
+                    </div>
+                    <span class="kv-item-tip success">正確入力</span>
+                </div>
+                
+                <div class="kv-item ue-clear">
+                	<label>性別</label>
+                	<div class="kv-item-content">
+                    	<span class="choose">
+                            <span class="checkboxouter">
+                                <input type="radio" name="need" />
+                                <span class="radio"></span>
+                            </span>
+                            <span class="text">男</span>
+                        </span>
+                    	<span class="choose">
+                            <span class="checkboxouter">
+                                <input type="radio" name="need" />
+                                <span class="radio"></span>
+                            </span>
+                            <span class="text">女</span>
+                        </span>
+                        
+                    </div>
+                    <span class="kv-item-tip">文字数は35文字に制限されています</span>
+                </div>
+                
+                
+                <div class="kv-item ue-clear">
+                	<label><span class="impInfo">*</span>画像</label>
+                	<div class="kv-item-content file">
+						<span class="text"></span>
+                        <input type="file" />
+                        <input type="button" class="button normal long2" value="検索.." />
+                    </div>
+                    <span class="kv-item-tip">文字数は35文字に制限されています</span>
+                </div>
+            </div>
+            
+            <h2 class="subfild">
+            	<span>メモ資料</pan>
+            </h2>
+            
+            <div class="subfild-content remarkes-info">
+            	<div class="kv-item ue-clear">
+                	<label><span class="impInfo">*</span>履歴</label>
+                	<div class="kv-item-content">
+                    	<textarea placeholder="履歴" id="content" style="width:800px;height:240px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <input class="button" type="button" value="修正確認" />
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+	$('select').select();
+	showRemind('input[type=text],textarea','color5');
+	UM.getEditor('content');
+</script>
+</html>

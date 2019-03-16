@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/WdatePicker.css" />
+<link rel="stylesheet" type="text/css" href="css/skin_/table.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.grid.css" />
+
+
+<title>更新</title>
+</head>
+
+<body>
+<div id="container">
+	<div id="hd"></div>
+    <div id="bd">
+    	<div id="main">
+        	<div class="search-box ue-clear">
+            	<div class="search-area">
+                    <div class="kv-item ue-clear">
+                        <label>roll-on：</label>
+                        <div class="kv-item-content ue-clear">
+                            <span class="choose">
+                                <span class="checkboxouter">
+                                    <input type="radio" name="time" />
+                                    <span class="radio"></span>
+                                </span>
+                                <span class="text">全部</span>
+                            </span>
+                            <span class="choose">
+                                <span class="checkboxouter">
+                                    <input type="radio" name="time" />
+                                    <span class="radio"></span>
+                                </span>
+                                <span class="text">今週</span>
+                            </span>
+                            <span class="choose">
+                                <span class="checkboxouter">
+                                    <input type="radio" name="time" />
+                                    <span class="radio"></span>
+                                </span>
+                                <span class="text">今月</span>
+                            </span>
+                            <span class="choose">
+                                <span class="checkboxouter">
+                                    <input type="radio" name="time" />
+                                    <span class="radio"></span>
+                                </span>
+                                <span class="text">今年</span>
+                            </span>
+                            <span class="choose">
+                                <span class="checkboxouter">
+                                    <input type="radio" name="time" data-define="define" />
+                                    <span class="radio"></span>
+                                </span>
+                                <span class="text">カスタマイズ</span>
+                            </span>
+                            <span class="define-input">
+                            	<input type="text" placeholder="開始日" />
+                                <span class="division"></span>
+                                <input type="text" placeholder="終了日" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="kv-item ue-clear">
+                        <label>レベル:</label>
+                        <div class="kv-item-content">
+                            <select>
+                                <option>AM</option>
+                                <option>TL</option>
+                                <option>SSE</option>
+                                <option>SE</option>
+                                <option>ASE</option>
+                                <option>M</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-button">
+                	<input class="button" type="button" value="検索してみる" />
+                </div>
+             </div>
+             
+            <div class="table">
+            	<div class="opt ue-clear">
+                	<span class="sortarea">
+                    	<span class="sort">
+                        	<label>ソート：</label>
+                            <span class="name">
+                            	<i class="icon"></i>
+                                <span class="text">名前</span>
+                            </span>
+                        </span>
+                        
+                        <i class="list"></i>
+                        <i class="card"></i>
+                    </span>
+                	<span class="optarea">
+                        <a href="javascript:;" class="add">
+                            <i class="icon"></i>
+                            <span class="text">追加</span>
+                        </a>
+                        <a href="javascript:;" class="delete">
+                            <i class="icon"></i>
+                            <span class="text">削除</span>
+                        </a>
+                        
+                        <a href="javascript:;" class="statistics">
+                            <i class="icon"></i>
+                            <span class="text">統計</span>
+                        </a>
+                        
+                        <a href="javascript:;" class="config">
+                            <i class="icon"></i>
+                            <span class="text">配置</span>
+                        </a>
+                    </span>
+                </div>
+                
+                <div class="grid"></div>
+                
+                <div class="pagination"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript" src="js/jquery.select.js"></script>
+<script type="text/javascript" src="js/core.js"></script>
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+<script type="text/javascript" src="js/jquery.grid.js"></script>
+<script type="text/javascript" src="js/WdatePicker.js"></script>
+<script type="text/javascript">
+	$('select').select();
+	var head = [{
+				label: 'EID',
+				width: 100,
+				sortable: 'default',
+				name: 'id'	
+			},{
+				label:'Name',
+				width: 150,
+				sortable: 'default',
+				name:'name'	
+			},{
+				label:'Level',
+				width:150	
+			},{
+				label: 'Team',
+				width: 150	
+			},{
+				label: '性别',
+				minWidth: 200	
+			},{
+				label: 'Roll-on Date',
+				width: 120	
+			},{
+				label: '日本語',
+				width:100	
+			}];
+			
+	var oper = [{label:'削除',onclick:function(){
+						alert('削除');
+				}},{label:'編集',onclick: function(){
+					alert('編集')	
+				}}]
+	var tbody = [
+					["201301","admin","AM","MCO","Male","2019-03-18","J1/O1",oper], 
+					["201302","uimaker","TL","MBD","Female","2019-03-18","E1/E2",oper],
+                    ["201301","admin","TL","MF2","Male","2019-03-18","J2/O2",oper], 
+                    ["201302","uimaker","SSE","MF3","Female","2019-03-18","J2/O2",oper],
+                    ["201301","admin","SSE","MF4","Male","2019-03-18","J1/O2",oper], 
+                    ["201302","uimaker","SSE","MF4","Female","2019-03-18","J1/O1",oper],
+                    ["201301","admin","SE","MF3","Male","2019-03-18","J1/O2",oper], 
+                    ["201302","uimaker","ASE","MF4","Female","2019-03-18","J1/O1",oper],
+					["201301","admin","ASE","Tech","Male","2019-03-18","J2/O2",oper]]
+					
+					
+		$('.grid').Grid({
+			thead: head,
+			tbody: null,
+			height:400,
+			checkbox: {
+				single:true	
+			},
+			operator: {
+				type : "normal",
+				width : 100	
+			},
+			sortCallBack : function(name,index,type){
+				alert(name+","+index+','+type);
+			}
+			
+		});
+	
+	$('.grid').Grid('addLoading');
+	
+	/// 模拟异步
+	setTimeout(function(){
+		$('.grid').Grid('setData',tbody, head);
+	},2000)
+	
+	
+	$('.pagination').pagination(100,{
+		callback: function(page){
+			alert(page);	
+		},
+		display_msg: false
+	});
+	
+	$('.search-box input[type=radio]').click(function(e) {
+        if($(this).prop('checked')){
+			if($(this).attr('data-define') === 'define'){
+				$('.define-input').show();
+			}else{
+				$('.define-input').hide();
+			}
+		}
+    });
+</script>
+</html>

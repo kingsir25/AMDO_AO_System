@@ -5,9 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/skin_/login.css" />
-<script type="text/javascript" src="js/jquery.js"></script>
+
+<script src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.select.js"></script>
-<title>办公后台管理_用户登录</title>
+<title>AMDO RMS Login</title>
 </head>
 
 <body>
@@ -17,41 +18,91 @@
         	<div class="login-box">
                 <div id="logo"></div>
                 <h1></h1>
-                <div class="input username" id="username">
-                    <label for="userName">用户名</label>
-                    <span></span>
-                    <input type="text" id="userName" />
-                </div>
-                <div class="input psw" id="psw">
-                    <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-                    <span></span>
-                    <input type="password" id="password" />
-                </div>
-                <div class="input validate" id="validate">
-                    <label for="valiDate">验证码</label>
-                    <input type="text" id="valiDate" />
-                    <div class="value">X3D5</div>
-                </div>
-                <div class="styleArea">
-                    <div class="styleWrap">
-                        <select name="style">
-                            <option value="默认风格">默认风格</option>
-                            <option value="红色风格">红色风格</option>
-                            <option value="绿色风格">绿色风格</option>
-                        </select>
-                    </div>
-                </div>
-                <div id="btn" class="loginButton">
-                    <input type="button" class="button" value="登录"  />
+                <div id="app" align:center>
+                        <div class="input username"  id="username">
+                        <label for="userName">ユーザEID</label>
+                        <span></span>
+                        <input type="text" v-model="form.username" />
+                        </div>
+                        <div class="input psw" id="psw">
+                        <label for="password">パスワード</label>
+                        <span></span>
+                        <input type="password" v-model="form.password"/>
+                        </div>
+                        <div id="btn1">
+                            <input type="button" class="button1" @click="login" value="ログイン"  />
+                        </div>
+                    <div v-if="error" class="alert alert-danger" role="alert" style="text-align: center;color: red">{{errorMsg}}</div>
                 </div>
             </div>
         </div>
-        <div id="ft">CopyRight&nbsp;2014&nbsp;&nbsp;版权所有&nbsp;&nbsp;More Templates <a href="http://www.XXX.com/" target="_blank" title="JAKE出品">JAKE出品</a> - Collect from <a href="http://www.XXX.com/" title="JAKE出品" target="_blank">JAKE出品</a> &nbsp;&nbsp;</div>
+        <div id="ft">© 2019 Accenture. All Rights Reserved. </div>
     </div>
    
 </div>
 
 </body>
+<script src="js/vue.min.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+var vm = new Vue({
+	el : '#app',
+	data : {
+		form : {
+			username : '',
+			password : '',
+		},
+		error : false,
+		userfocus : true,
+		pwdfocus : false,
+		errorMsg : ''
+	},
+	beforeCreate : function() {
+		if (self != top) {
+			top.location.href = self.location.href;
+		}
+	},
+	methods : {
+		login : function(event) {
+			if (!vm.form.username) {
+				vm.error = true;
+				vm.errorMsg = "ユーザEIDを入力してください!";
+				vm.userfocus = true;
+				return;
+			}
+			if (!vm.form.password) {
+				vm.error = true;
+				vm.errorMsg = "パスワードを入力してください";
+				vm.pwdfocus = true;
+				return;
+			}
+			var urlstr = baseUrl + "demo/sys/login?username=" + vm.form.username + "&password=" + vm.form.password;
+			console.log(urlstr);
+			$.ajax({
+				type : "POST",
+				url : urlstr,
+				data : {
+					// "username":vm.form.username,
+					// "password":vm.form.password
+				},
+				dataType : "json",
+				success : function(result) {
+					console.log(result.msg);
+					if (result.code == 0) {// 登录成功
+						localStorage.setItem('token',result.Authorization);
+						localStorage.setItem('username',result.username);
+						parent.location.href = 'http://localhost:8080/AMDO_AO_System/main.html';
+					} else {
+						vm.error = true;
+						vm.errorMsg = result.msg;
+					}
+				}
+			});
+		}
+	}
+});
+
+</script>
 <script type="text/javascript">
 	var height = $(window).height() > 445 ? $(window).height() : 445;
 	$("#container").height(height);
@@ -64,10 +115,6 @@
 		$('#bd').css('padding-top', bdheight);
     });
 	$('select').select();
-	
-	$('.loginButton').click(function(e) {
-        document.location.href = "main.html";
-    });
 </script>
 
 </html>
